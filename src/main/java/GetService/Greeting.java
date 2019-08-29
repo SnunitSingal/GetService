@@ -1,4 +1,4 @@
-package singal.GetService;
+package  GetService;
 
 public class Greeting {
 

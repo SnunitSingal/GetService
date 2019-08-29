@@ -1,4 +1,4 @@
-package singal.GetService;
+package GetService;
  
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
