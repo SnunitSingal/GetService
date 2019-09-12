@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Person {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     
     @Column(name="first_name")
@@ -25,11 +25,12 @@ public class Person {
     private String email;
      
 
-    protected Person() {}
+    public Person() {}
 
-    public Person(String firstName, String lastName) {
+    public Person(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
     }
 
     public void setFirstName(String firstName) {
@@ -45,7 +46,7 @@ public class Person {
     }
 
 	public Long getId() {
-		return null;
+		return id;
 	}
 
     public String getFirstName() {

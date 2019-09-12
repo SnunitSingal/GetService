@@ -41,9 +41,15 @@ public class Controller
     }
 
     @PostMapping
-    public ResponseEntity<Person> createOrUpdatePerson(Person person)
+    public ResponseEntity<Person> createPerson(Person person)
                                                     throws RecordNotFoundException {
-        Person updated = service.createOrUpdatePerson(person);
+        Person newPerson = service.createPerson(person);
+        return new ResponseEntity<Person>(newPerson, new HttpHeaders(), HttpStatus.OK);
+    }
+    @PostMapping("/{id}")
+    public ResponseEntity<Person> updatePerson(@PathVariable("id") Long id, Person person)
+                                                    throws RecordNotFoundException {
+        Person updated = service.updatePerson(id, person);
         return new ResponseEntity<Person>(updated, new HttpHeaders(), HttpStatus.OK);
     }
  
@@ -51,7 +57,7 @@ public class Controller
     public HttpStatus deletePersonById(@PathVariable("id") Long id)
                                                     throws RecordNotFoundException {
         service.deletePersonById(id);
-        return HttpStatus.FORBIDDEN;
+        return HttpStatus.ACCEPTED;
     }
  
 }

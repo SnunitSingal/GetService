@@ -40,26 +40,36 @@ public class PersonService {
         }
     }
      
-    public Person createOrUpdatePerson(Person entity) 
+    public Person updatePerson(Long id,Person entity) throws RecordNotFoundException 
     {
-        if(entity.getId() != null )
-        {        
-        	Person person = repository.findOne(entity.getId());
-
-            person.setEmail(entity.getEmail());
-            person.setFirstName(entity.getFirstName());
-            person.setLastName(entity.getLastName());
- 
-            repository.save(person);
+        	Person person = repository.findOne(id);
+            if (person != null) {
+            	
+              if (entity.getEmail() != null ) {
+            	person.setEmail(entity.getEmail());
+              }
+              if (entity.getFirstName() != null ) {
+                person.setFirstName(entity.getFirstName());
+              }
+              if (entity.getLastName() != null ) {
+                person.setLastName(entity.getLastName());
+              }
+              repository.save(person);
              
-            return person;
+              return person;
         } else {
-            entity = repository.save(entity);
-             
-            return entity;
+            throw new RecordNotFoundException("No person record exist for given id");
         }
     }
-     
+    
+
+    public Person createPerson(Person entity) 
+    {
+        	Person person = new Person(entity.getFirstName(),entity.getLastName(),entity.getEmail());
+            repository.save(person);
+            return person;
+    }
+    
     public void deletePersonById(Long id) throws RecordNotFoundException
     {
         Person person = repository.findOne(id);
