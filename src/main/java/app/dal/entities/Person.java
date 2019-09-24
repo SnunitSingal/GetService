@@ -8,24 +8,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table()
+@Table(name = "PERSON")
 public class Person {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @Column(name="first_name")
-    private String firstName;
-     
-    @Column(name="last_name")
-    private String lastName;
-     
-    @Column(name="email", nullable=true, length=200)
-    private String email;
-     
 
-    public Person() {}
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "email", nullable = true, length = 200)
+    private String email;
+
+
+    public Person() {
+    }
 
     public Person(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -36,31 +37,31 @@ public class Person {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-    
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    
+
     public void setEmail(String email) {
         this.email = email;
     }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
     public String getFirstName() {
-    	return firstName;
+        return firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
-    
+
     public String getEmail() {
         return email;
     }
-    
+
     @Override
     public String toString() {
         return String.format(
